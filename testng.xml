@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LambdaTest ecommerce playground website test suite ">
+    <test name="Search Product tests ">
+        <classes>
+            <class name="io.github.mfaisalkhatri.tests.LambdaTestEcommerceTests">
+                <methods>
+                    <include name="testLogin"/>
+                    <include name="testSearchProduct"/>
+                    <include name="testAddProductToCart"/>
+                </methods>
+            </class>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

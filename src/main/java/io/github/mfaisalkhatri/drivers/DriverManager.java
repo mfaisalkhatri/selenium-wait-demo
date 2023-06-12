@@ -11,7 +11,9 @@ public class DriverManager {
 
     public void createChromeDriver() {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
 
     public WebDriver getDriver() {
         return this.driver;

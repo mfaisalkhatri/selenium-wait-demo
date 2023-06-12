@@ -62,6 +62,7 @@ public class ProductPage {
     }
 
     private WebElement notificationPopUp() {
+        //Thread.sleep(2000);
         return driver.findElement(By.id("notification-box-top"));
     }
 

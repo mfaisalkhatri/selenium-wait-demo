@@ -2,7 +2,6 @@ package io.github.mfaisalkhatri.tests;
 
 import io.github.mfaisalkhatri.drivers.DriverManager;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {

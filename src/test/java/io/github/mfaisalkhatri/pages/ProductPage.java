@@ -1,9 +1,17 @@
 package io.github.mfaisalkhatri.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.function.Function;
 
 public class ProductPage {
     WebDriver driver;
@@ -22,15 +30,25 @@ public class ProductPage {
                 .perform();
     }
 
-    public void checkoutProduct() throws InterruptedException {
-        Thread.sleep(2000);
+    public void checkoutProduct() {
+        //Thread.sleep(2000);
         checkoutBtn().click();
     }
 
     public String successMessageText() throws InterruptedException {
-        Thread.sleep(2000);
-        return notificationPopUp().findElement(By.tagName("p"))
-                .getText();
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        WebElement successMessage = wait.until(new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                return notificationPopUp().findElement(By.tagName("p"));
+            }
+        });
+        //Thread.sleep(2000);
+        return successMessage.getText();
     }
 
     private WebElement addToCartBtn() {
@@ -38,7 +56,9 @@ public class ProductPage {
     }
 
     private WebElement checkoutBtn() {
-        return notificationPopUp().findElement(By.cssSelector("div.form-row > div:nth-child(2) > a"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement checkoutBtn = notificationPopUp().findElement(By.cssSelector("div.form-row > div:nth-child(2) > a"));
+        return wait.until(ExpectedConditions.visibilityOf(checkoutBtn));
     }
 
     private WebElement notificationPopUp() {

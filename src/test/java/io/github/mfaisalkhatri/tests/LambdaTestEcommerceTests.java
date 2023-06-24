@@ -16,7 +16,7 @@ public class LambdaTestEcommerceTests extends BaseTest{
         HomePage homePage = new HomePage(driverManager.getDriver());
         homePage.navigateToLoginPage();
         LoginPage loginPage = new LoginPage(driverManager.getDriver());
-        loginPage.login("johnfd009@gmail.com","Password@321");
+        loginPage.login(System.getProperty("username"),System.getProperty("password"));
         assertEquals(loginPage.getMyAccountPageHeader(),"My Account");
     }
 

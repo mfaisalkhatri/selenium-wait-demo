@@ -41,12 +41,7 @@ public class ProductPage {
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class);
 
-        WebElement successMessage = wait.until(new Function<WebDriver, WebElement>() {
-            @Override
-            public WebElement apply(WebDriver driver) {
-                return notificationPopUp().findElement(By.tagName("p"));
-            }
-        });
+        WebElement successMessage = wait.until(driver -> notificationPopUp().findElement(By.tagName("p")));
         //Thread.sleep(2000);
         return successMessage.getText();
     }

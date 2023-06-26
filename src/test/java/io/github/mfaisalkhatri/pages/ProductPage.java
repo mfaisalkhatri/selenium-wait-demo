@@ -35,14 +35,20 @@ public class ProductPage {
         checkoutBtn().click();
     }
 
-    public String successMessageText() throws InterruptedException {
+    public String successMessageText() {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
+                
 
         WebElement successMessage = wait.until(driver -> notificationPopUp().findElement(By.tagName("p")));
-        //Thread.sleep(2000);
+        //WebElement foo = wait.until(driver -> {return driver.findElement(By.id("foo"))});
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         return successMessage.getText();
     }
 
@@ -57,7 +63,11 @@ public class ProductPage {
     }
 
     private WebElement notificationPopUp() {
-        //Thread.sleep(2000);
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
         return driver.findElement(By.id("notification-box-top"));
     }
 

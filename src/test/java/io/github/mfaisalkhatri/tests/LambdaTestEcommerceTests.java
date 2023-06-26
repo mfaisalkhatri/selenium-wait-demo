@@ -5,8 +5,8 @@ import io.github.mfaisalkhatri.pages.LoginPage;
 import io.github.mfaisalkhatri.pages.ProductPage;
 import org.testng.annotations.Test;
 
-import java.text.MessageFormat;
 
+import static java.text.MessageFormat.format;
 import static org.testng.Assert.assertEquals;
 
 public class LambdaTestEcommerceTests extends BaseTest{
@@ -29,11 +29,11 @@ public class LambdaTestEcommerceTests extends BaseTest{
     }
 
     @Test
-    public void testAddProductToCart () throws InterruptedException {
+    public void testAddProductToCart ()  {
         ProductPage productPage = new ProductPage(driverManager.getDriver());
         productPage.addPalmTreoCameraLensToCart();
         final String expectedMessage = "{0}\n{1}\n{2}\n{3}\n{4}";
-        assertEquals(productPage.successMessageText(), MessageFormat.format(expectedMessage, "Success: You have added", "Palm Treo Pro", "to your",
+        assertEquals(productPage.successMessageText(), format(expectedMessage, "Success: You have added", "Palm Treo Pro", "to your",
                 "shopping cart", "!"));
         productPage.checkoutProduct();
     }

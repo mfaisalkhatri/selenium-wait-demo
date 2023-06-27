@@ -11,13 +11,14 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.function.Function;
 
 public class ProductPage {
     WebDriver driver;
+    WebDriverWait wait; 
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void addPalmTreoCameraLensToCart() {
@@ -31,24 +32,23 @@ public class ProductPage {
     }
 
     public void checkoutProduct() {
-        //Thread.sleep(2000);
         checkoutBtn().click();
     }
 
-    public String successMessageText() throws InterruptedException {
+    public String successMessageText() {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofSeconds(1))
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
 
-        WebElement successMessage = wait.until(new Function<WebDriver, WebElement>() {
-            @Override
-            public WebElement apply(WebDriver driver) {
-                return notificationPopUp().findElement(By.tagName("p"));
-            }
-        });
-        //Thread.sleep(2000);
-        return successMessage.getText();
+        WebElement successMessage = wait.until(driver -> notificationPopUp().findElement(By.tagName("p")));
+        return successMessage.getText();    
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return notificationPopUp().findElement(By.tagName("p")).getText();
     }
 
     private WebElement addToCartBtn() {
@@ -56,14 +56,24 @@ public class ProductPage {
     }
 
     private WebElement checkoutBtn() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement checkoutBtn = notificationPopUp().findElement(By.cssSelector("div.form-row > div:nth-child(2) > a"));
         return wait.until(ExpectedConditions.visibilityOf(checkoutBtn));
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return notificationPopUp().findElement(By.cssSelector("div.form-row > div:nth-child(2) > a"));
     }
 
     private WebElement notificationPopUp() {
-        //Thread.sleep(2000);
-        return driver.findElement(By.id("notification-box-top"));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("notification-box-top")));
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+        //return driver.findElement(By.id("notification-box-top"));
     }
 
     private WebElement palmTreoCameraLens() {

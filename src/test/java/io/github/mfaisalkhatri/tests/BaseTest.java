@@ -11,7 +11,7 @@ public class BaseTest {
     @BeforeTest(alwaysRun = true)
     public void testSetup() {
         driverManager = new DriverManager();
-        driverManager.createChromeDriver();
+        driverManager.createChromeDriverInCloud();
         driverManager.getDriver().get("https://ecommerce-playground.lambdatest.io/");
     }
 

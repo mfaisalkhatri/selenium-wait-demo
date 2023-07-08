@@ -6,17 +6,17 @@ import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
 
-    DriverManager driverManager;
+    protected DriverManager driverManager;
 
     @BeforeTest(alwaysRun = true)
     public void testSetup() {
-        driverManager = new DriverManager();
-        driverManager.createChromeDriverInCloud();
-        driverManager.getDriver().get("https://ecommerce-playground.lambdatest.io/");
+        this.driverManager = new DriverManager();
+        this.driverManager.createChromeDriverInCloud();
+        this.driverManager.getDriver().get("https://ecommerce-playground.lambdatest.io/");
     }
 
     @AfterTest(alwaysRun = true)
     public void tearDown() {
-        driverManager.quitDriver();
+        this.driverManager.quitDriver();
     }
 }

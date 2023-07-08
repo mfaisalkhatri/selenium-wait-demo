@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="LambdaTest ecommerce playground website test suite ">
-    <test name="Search Product tests " >
+     <test name="Search Product tests" enabled="false">
         <classes>
             <class name="io.github.mfaisalkhatri.tests.LambdaTestEcommerceTests">
                 <methods>
@@ -12,12 +12,13 @@
             </class>
         </classes>
     </test> <!-- Test -->
-    <test name="Search Product tests " parallel="methods" enabled="false">
+    <test name="Search Product tests " parallel="methods" enabled="true">
         <classes>
             <class name="io.github.mfaisalkhatri.tests.ThreadSleepExampleTests">
                 <methods>
                     <include name="testThreadSleep"/>
                     <include name="testThreadSleepMethodOverload"/>
+                    <include name="ThreadLocalExample"/>
                 </methods>
             </class>
         </classes>

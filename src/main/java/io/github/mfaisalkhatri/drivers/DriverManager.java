@@ -14,7 +14,7 @@ import static java.text.MessageFormat.format;
 
 public class DriverManager {
 
-    WebDriver driver;
+    protected WebDriver driver;
     private static final String LT_USERNAME = System.getProperty("LT_USERNAME");
     private static final String LT_ACCESS_KEY = System.getProperty("LT_ACCESS_KEY");
     private static final String GRID_URL = "@hub.lambdatest.com/wd/hub";
@@ -34,15 +34,15 @@ public class DriverManager {
         ltOptions.put("plugin", "java-testNG");
         browserOptions.setCapability("LT:Options", ltOptions);
         try {
-            driver = new RemoteWebDriver(new URL(format("https://{0}:{1}{2}", LT_USERNAME, LT_ACCESS_KEY, GRID_URL)), browserOptions);
+            this.driver = new RemoteWebDriver(new URL(format("https://{0}:{1}{2}", LT_USERNAME, LT_ACCESS_KEY, GRID_URL)), browserOptions);
         } catch (MalformedURLException e) {
             throw new Error("RemoteDriver's URL not set correctly!");
         }
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public void createChromeDriverLocal() {
-        driver = new ChromeDriver();
+        this.driver = new ChromeDriver();
     }
 
     public WebDriver getDriver() {
@@ -50,6 +50,6 @@ public class DriverManager {
     }
 
     public void quitDriver() {
-        driver.quit();
+        this.driver.quit();
     }
 }

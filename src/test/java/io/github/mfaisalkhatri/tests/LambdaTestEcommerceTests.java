@@ -13,24 +13,24 @@ public class LambdaTestEcommerceTests extends BaseTest{
 
     @Test
     public void testLogin() {
-        HomePage homePage = new HomePage(driverManager.getDriver());
+        final HomePage homePage = new HomePage(this.driverManager.getDriver());
         homePage.navigateToLoginPage();
-        LoginPage loginPage = new LoginPage(driverManager.getDriver());
+        final LoginPage loginPage = new LoginPage(this.driverManager.getDriver());
         loginPage.login(System.getProperty("username"),System.getProperty("password"));
         assertEquals(loginPage.getMyAccountPageHeader(),"My Account");
     }
 
     @Test
     public void testSearchProduct() {
-        String productName = "Palm Treo Pro";
-        HomePage homePage = new HomePage(driverManager.getDriver());
+        final String productName = "Palm Treo Pro";
+        final HomePage homePage = new HomePage(this.driverManager.getDriver());
         homePage.searchProduct(productName);
         assertEquals(homePage.searchResultText(), productName);
     }
 
     @Test
     public void testAddProductToCart ()  {
-        ProductPage productPage = new ProductPage(driverManager.getDriver());
+        final ProductPage productPage = new ProductPage(this.driverManager.getDriver());
         productPage.addPalmTreoCameraLensToCart();
         final String expectedMessage = "{0}\n{1}\n{2}\n{3}\n{4}";
         assertEquals(productPage.successMessageText(), format(expectedMessage, "Success: You have added", "Palm Treo Pro", "to your",

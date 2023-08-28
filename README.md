@@ -22,6 +22,10 @@
 
     - Right click on `testng.xml` and select `Run '...\testng.xml`
 
+## :writing_hand: Blog Links
+
+- [Thread.sleep() Method in Java – Complete Tutorial With Example](https://www.lambdatest.com/blog/sleep-java-method/)
+
 ## 🧬 Need Assistance?
 
 - Discuss your queries by writing to me @ `mohammadfaisalkhatri@gmail.com`

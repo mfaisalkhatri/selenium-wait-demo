@@ -5,35 +5,33 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage {
+    private final WebDriver driver;
 
-
-    WebDriver driver;
-
-    public HomePage(WebDriver driver) {
+    public HomePage(final WebDriver driver) {
         this.driver = driver;
     }
 
     private WebElement searchField() {
-        return driver.findElement(By.name("search"));
+        return this.driver.findElement(By.name("search"));
     }
 
     private WebElement searchBtn() {
-        return driver.findElement(By.cssSelector("button[type='submit'][class='type-text']"));
+        return this.driver.findElement(By.cssSelector("button[type='submit'][class='type-text']"));
     }
 
-    public void searchProduct(String productName) {
+    public void searchProduct(final String productName) {
         searchField().clear();
         searchField().sendKeys(productName);
         searchBtn().click();
     }
 
     public String searchResultText() {
-        return driver.findElement(By.cssSelector("div.product-layout:nth-child(1) div:nth-child(1) h4 > a.text-ellipsis-2")).getText();
+        return this.driver.findElement(By.cssSelector("div.product-layout:nth-child(1) div:nth-child(1) h4 > a.text-ellipsis-2")).getText();
     }
 
     public void navigateToLoginPage() {
-        driver.findElement(By.linkText("My account"))
+        this.driver.findElement(By.linkText("My account"))
                 .click();
-        driver.findElement(By.linkText("Login")).click();
+        this.driver.findElement(By.linkText("Login")).click();
     }
 }

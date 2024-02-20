@@ -6,24 +6,24 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage {
 
-    WebDriver driver;
+    private final WebDriver driver;
 
-    public LoginPage (WebDriver driver){
+    public LoginPage (final WebDriver driver){
         this.driver = driver;
     }
 
     private WebElement emailField() {
-        return driver.findElement(By.id("input-email"));
+        return this.driver.findElement(By.id("input-email"));
     }
     private WebElement passwordField() {
-        return driver.findElement(By.id("input-password"));
+        return this.driver.findElement(By.id("input-password"));
     }
 
     private WebElement loginBtn() {
-        return driver.findElement(By.cssSelector("input.btn-primary"));
+        return this.driver.findElement(By.cssSelector("input.btn-primary"));
     }
 
-    public void login (String email, String password) {
+    public void login (final String email, final String password) {
         emailField().clear();
         emailField().sendKeys(email);
         passwordField().clear();
@@ -32,6 +32,6 @@ public class LoginPage {
     }
 
     public String getMyAccountPageHeader() {
-        return driver.findElement(By.tagName("h2")).getText();
+        return this.driver.findElement(By.tagName("h2")).getText();
     }
 }
